@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { getJobs } from '../utils/API'
+import React, { useEffect, useState, useContext } from 'react'
+import { getJobs, getCourses } from '../utils/API'
+import { TimetableContext } from './TimetableContext'
+import SelectElement from './SelectElement'
 
-export default function SelectContainer(params) {
+export default function SelectContainer() {
+  const context = useContext(TimetableContext)
   const [jobs, setJobs] = useState([])
+  const [courses, setCourses] = useState([])
+  const [showCourses, setShowCourses] = useState(false)
+
+  // gets the jobs from the api on the first render
   useEffect(() => {
-    // async function fetcher() {
-    //   const optionsraw = await getJobs()
-    //   const options = optionsraw.map(entry => {
-    //     return { id: entry.beruf_id, label: entry.beruf_name }
-    //   })
-    // }
-    // fetcher()
+    setShowCourses(false)
     getJobs().then(optionsRaw => {
+      //maps over the jobs and set the values to a "reusable"-keys
       const options = optionsRaw.map(entry => {
         return { id: entry.beruf_id, label: entry.beruf_name }
       })
@@ -19,68 +21,43 @@ export default function SelectContainer(params) {
     })
   }, [])
 
+  // get the courses after a job got chosen
+  useEffect(() => {
+    if (context.jobId) {
+      getCourses(context.jobId).then(optionsRaw => {
+        //maps over the courses and set the values to a "reusable"-keys
+        const options = optionsRaw.map(entry => {
+          return { id: entry.klasse_id, label: entry.klasse_name }
+        })
+        setCourses(options)
+        setShowCourses(true)
+      })
+    }
+  }, [context.jobId])
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-8">
       <div className="px-6 py-4">
         <h1 className="font-bold text-3xl">stundenplan gibm</h1>
-        {/* die daten müssen noch eingefüht werden / wie mit localstorage? */}
         <SelectElement
           title="job"
+          value={context.jobId}
           options={jobs}
-          onSelect={value => console.log(value)}
+          defaultLabel={context.jobId}
+          onSelect={value => {
+            context.setCourseId('')
+            context.setJobId(value)
+          }}
         />
-        {/* logic muss hier noch gemacht werden mit dem fade in/out */}
-        {/*style="display: none;"*/}
-        {/* <SelectElement title="class" /> */}
-      </div>
-    </div>
-  )
-}
-
-function SelectElement({ title, options, onSelect }) {
-  const changeHandler = e => {
-    // (val) => {}
-    onSelect(e.target.value)
-  }
-  return (
-    <div className="w-full my-6">
-      <label
-        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-        forhtml="selector"
-      >
-        {title}
-      </label>
-      <SelectInput
-        id="selector"
-        options={options}
-        onChange={changeHandler}
-        defaultLabel={`Please select your ${title}`}
-      />
-    </div>
-  )
-}
-
-function SelectInput({ options, onChange, defaultLabel = null }) {
-  //options = [{ id: 1, label: 'bla'}]
-  return (
-    <div className="relative">
-      <select
-        onChange={onChange}
-        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-      >
-        {defaultLabel && <option default>{defaultLabel}</option>}
-        {options.map(entry => {
-          return (
-            <option key={entry.id} value={entry.id}>
-              {entry.label}
-            </option>
-          )
-        })}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-        <svg className="fill-current h-4 w-4" viewBox="0 0 20 20">
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-        </svg>
+        {showCourses && (
+          <SelectElement
+            title="class"
+            value={context.courseId}
+            options={courses}
+            defaultLabel={context.courseId}
+            onSelect={value => context.setCourseId(value)}
+          />
+        )}
       </div>
     </div>
   )
