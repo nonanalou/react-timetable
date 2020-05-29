@@ -14,12 +14,10 @@ export default function SelectInput({
         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
       >
         {defaultLabel && (
-          //-----------> this is not working with empty classes
           <option value="" disabled>
             {defaultLabel}
           </option>
         )}
-        {/* {defaultLabel && <option default>{defaultLabel}</option>} */}
         {options.map(entry => {
           return (
             <option data-testid="selectOption" key={entry.id} value={entry.id}>

@@ -36,7 +36,7 @@ export default function SelectContainer() {
   }, [context.jobId])
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-8">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
       <div className="px-6 py-4">
         <h1 className="font-bold text-3xl">stundenplan gibm</h1>
         <SelectElement

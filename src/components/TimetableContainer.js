@@ -4,14 +4,21 @@ import { getTimetable } from '../utils/API'
 import NoScheduleAlert from './NoScheduleAlert'
 import ScheduleTable from './ScheduleTable'
 import TableNavigation from './TableNavigation'
+import {
+  subtractWeek,
+  addWeek,
+  getWeekAndYearString,
+} from '../utils/weekCalculator'
 
 export default function TimetableContainer() {
   const [timetable, setTimetable] = useState([])
   const { courseId } = useContext(TimetableContext)
+  const [date, setDate] = useState(new Date())
+  const week = getWeekAndYearString(date)
 
   //gets the timetable value after the course got chosen
   useEffect(() => {
-    getTimetable(courseId).then(optionsRaw => {
+    getTimetable(courseId, week).then(optionsRaw => {
       //maps over the timetable and set the values to "reusable"-keys
       const options = optionsRaw.map(entry => {
         const dayNames = [
@@ -37,10 +44,13 @@ export default function TimetableContainer() {
       })
       setTimetable(options)
     })
-  }, [courseId])
+  }, [courseId, week])
+
+  const addClickHandler = () => setDate(() => addWeek(date))
+  const prevClickHandler = () => setDate(() => subtractWeek(date))
 
   return (
-    <div className="max-w-4xl rounded overflow-hidden relative shadow-lg bg-white m-8">
+    <div className="max-w-4xl rounded overflow-hidden relative shadow-lg bg-white mt-8">
       <div className="overflow-x-auto m-4 p-2">
         {timetable.length ? (
           <ScheduleTable timetableContent={timetable} />
@@ -48,7 +58,11 @@ export default function TimetableContainer() {
           <NoScheduleAlert />
         )}
       </div>
-      <TableNavigation week="7-2020" />
+      <TableNavigation
+        addClickHandler={addClickHandler}
+        prevClickHandler={prevClickHandler}
+        date={week}
+      />
     </div>
   )
 }

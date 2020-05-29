@@ -3,17 +3,13 @@ export function getJobs() {
 }
 
 export function getCourses(jobId) {
-  //injection possible?
-  const queryParam = jobId ? jobId : null
   return fetch(
-    `http://sandbox.gibm.ch/klassen.php?beruf_id=${queryParam}`
+    `http://sandbox.gibm.ch/klassen.php?beruf_id=${jobId}`
   ).then(data => data.json())
 }
 
-export function getTimetable(courseId) {
-  //injection possible?
-  const queryParam = courseId ? courseId : null
+export function getTimetable(courseId, week) {
   return fetch(
-    `http://sandbox.gibm.ch/tafel.php?klasse_id=${queryParam}`
+    `http://sandbox.gibm.ch/tafel.php?klasse_id=${courseId}&woche=${week}`
   ).then(data => data.json())
 }

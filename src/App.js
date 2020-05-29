@@ -7,7 +7,7 @@ import { TimetableData } from './components/TimetableContext'
 
 function App() {
   return (
-    <div className="App">
+    <div className="h-screen bg-pink-400 p-8">
       <TimetableData>
         <SelectContainer />
         <TimetableContainer />
