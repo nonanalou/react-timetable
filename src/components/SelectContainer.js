@@ -5,8 +5,8 @@ import SelectElement from './SelectElement'
 
 export default function SelectContainer() {
   const context = useContext(TimetableContext)
-  const [jobs, setJobs] = useState([])
-  const [courses, setCourses] = useState([])
+  const [jobList, setJobList] = useState([])
+  const [courseList, setCourseList] = useState([])
   const [showCourses, setShowCourses] = useState(false)
 
   // gets the jobs from the api on the first render
@@ -17,7 +17,7 @@ export default function SelectContainer() {
       const options = optionsRaw.map(entry => {
         return { id: entry.beruf_id, label: entry.beruf_name }
       })
-      setJobs(options)
+      setJobList(options)
     })
   }, [])
 
@@ -29,7 +29,7 @@ export default function SelectContainer() {
         const options = optionsRaw.map(entry => {
           return { id: entry.klasse_id, label: entry.klasse_name }
         })
-        setCourses(options)
+        setCourseList(options)
         setShowCourses(true)
       })
     }
@@ -38,11 +38,13 @@ export default function SelectContainer() {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
       <div className="px-6 py-4">
-        <h1 className="font-bold text-3xl">stundenplan gibm</h1>
+        <h1 data-testid="header1" className="font-bold text-3xl">
+          Stundenplan gibm
+        </h1>
         <SelectElement
           title="job"
           value={context.jobId}
-          options={jobs}
+          options={jobList}
           defaultLabel={context.jobId}
           onSelect={value => {
             context.setCourseId('')
@@ -53,7 +55,7 @@ export default function SelectContainer() {
           <SelectElement
             title="class"
             value={context.courseId}
-            options={courses}
+            options={courseList}
             defaultLabel={context.courseId}
             onSelect={value => context.setCourseId(value)}
           />

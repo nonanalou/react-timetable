@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom'
 import './styles/tailwind.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import { TimetableData } from './components/TimetableContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TimetableData>
+      <App />
+    </TimetableData>
   </React.StrictMode>,
   document.getElementById('root')
 )

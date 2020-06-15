@@ -2,18 +2,19 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import user from '@testing-library/user-event'
 import SelectElement from '../SelectElement'
+import { getJobs as mockGetJobs } from '../../utils/API'
 
-const options = [
-  { id: 1, label: 'test1' },
-  { id: 2, label: 'test2' },
-  { id: 3, label: 'test3' },
-]
+jest.mock('../../utils/API.js')
 
 test('renders the select element and its options', () => {
-  const labelText = 'test'
-  const { getByLabelText, debug, getByText } = render(
-    <SelectElement title={labelText} options={options} />
-  )
+  mockGetJobs.mockResolvedValueOnce({})
+  const options = getJobs()
+  const labelText = 'job'
+  const { debug } = render(<p>{options}</p>)
+  debug()
+  // const { getByLabelText, debug, getByText } = render(
+  //   <SelectElement title={labelText} options={options} />
+  // )
 
   const selectOptions = getByLabelText(labelText)
   //the default option included

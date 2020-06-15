@@ -1,0 +1,114 @@
+[
+  {
+    "beruf_id": "25",
+    "beruf_name": "1"
+  },
+  {
+    "beruf_id": "1",
+    "beruf_name": "Anlagen- und Apparatebauer/innen"
+  },
+  {
+    "beruf_id": "2",
+    "beruf_name": "B\u00e4cker-Konditor-Confiseur/innen"
+  },
+  {
+    "beruf_id": "20",
+    "beruf_name": "Baupraktiker/innen"
+  },
+  {
+    "beruf_id": "3",
+    "beruf_name": "Berufsmatura"
+  },
+  {
+    "beruf_id": "22",
+    "beruf_name": "BM Repetenten"
+  },
+  {
+    "beruf_id": "5",
+    "beruf_name": "Elektroinstallateur/innen"
+  },
+  {
+    "beruf_id": "6",
+    "beruf_name": "Erg\u00e4nzungsf\u00e4cher"
+  },
+  {
+    "beruf_id": "7",
+    "beruf_name": "Fleischfachassistent/innen"
+  },
+  {
+    "beruf_id": "8",
+    "beruf_name": "Fleischfachleute"
+  },
+  {
+    "beruf_id": "9",
+    "beruf_name": "G\u00e4rtner/innen"
+  },
+  {
+    "beruf_id": "23",
+    "beruf_name": "hf-ict"
+  },
+  {
+    "beruf_id": "21",
+    "beruf_name": "Holzbearbeiter/innen"
+  },
+  {
+    "beruf_id": "10",
+    "beruf_name": "Informatiker/innen"
+  },
+  {
+    "beruf_id": "4",
+    "beruf_name": "Kick"
+  },
+  {
+    "beruf_id": "11",
+    "beruf_name": "K\u00f6che"
+  },
+  {
+    "beruf_id": "12",
+    "beruf_name": "KTSI"
+  },
+  {
+    "beruf_id": "13",
+    "beruf_name": "K\u00fcchenangestellte"
+  },
+  {
+    "beruf_id": "14",
+    "beruf_name": "Maurer/innen"
+  },
+  {
+    "beruf_id": "15",
+    "beruf_name": "Metallbauer/innen"
+  },
+  {
+    "beruf_id": "16",
+    "beruf_name": "Metallbaupratiker/innen"
+  },
+  {
+    "beruf_id": "17",
+    "beruf_name": "Montage-Elektriker/innen"
+  },
+  {
+    "beruf_id": "24",
+    "beruf_name": "St\u00fctzkurs1"
+  },
+  {
+    "beruf_id": "18",
+    "beruf_name": "St\u00fctzkurse"
+  },
+  {
+    "beruf_id": "27",
+    "beruf_name": "St\u00fctzkurs_Maurer1"
+  },
+  {
+    "beruf_id": "26",
+    "beruf_name": "St\u00fctzkurs_Maurer_Zimmerleute1"
+  },
+  {
+    "beruf_id": "28",
+    "beruf_name": "St\u00fctzkurs_Zimmerleute1"
+  },
+  {
+    "beruf_id": "19",
+    "beruf_name": "Zimmerleute"
+  }
+]
