@@ -9,7 +9,18 @@ const options = [
   { id: 3, label: 'test3' },
 ]
 
-test('renders the select element and its options', () => {
+test('renders the select element and its options correctly', () => {
+  const labelText = 'test'
+  const { getByLabelText } = render(
+    <SelectElement title={labelText} options={options} />
+  )
+
+  const selectOptions = getByLabelText(labelText)
+
+  expect(selectOptions).toMatchSnapshot()
+})
+
+test('allows interaction with the selectElement', () => {
   const labelText = 'test'
   const { getByLabelText, debug, getByText } = render(
     <SelectElement title={labelText} options={options} />
@@ -22,15 +33,16 @@ test('renders the select element and its options', () => {
   expect(selectOptions[0]).toHaveAttribute('disabled')
   expect(getByText('test1')).toHaveAttribute('value')
 
-  //user.selectOptions(selectOptions, 'test3')
-  const selectOption = getByText('test3')
-  fireEvent.click(selectOption)
-  debug(selectOption)
+  //two different ways of trying to select something
+  user.selectOptions(selectOptions, 'test3')
+  // const selectOption = getByText('test3')
+  // fireEvent.click(selectOption)
+  debug()
 
   //why the fuuu is that working???
-  expect(getByText('test1').selected).toBe(true)
+  expect(getByText('test1').selected).toBe(false)
   expect(getByText('test2').selected).toBe(false)
-  expect(getByText('test3').selected).toBe(false)
+  expect(getByText('test3').selected).toBe(true)
 
   expect(selectOptions[0]).toHaveValue('')
   expect(getByText('test1')).toHaveValue('1')
@@ -43,6 +55,7 @@ test('renders the select element and its options', () => {
   expect(selectOptions[3]).toHaveTextContent(/^test3$/)
 })
 
+//this is not my code! i just wanted to test if in other cases it works
 test('selectOptions', () => {
   render(
     <select data-testid="select-multiple">

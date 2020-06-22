@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the select element and its options correctly 1`] = `
+<select
+  class=" block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+>
+  <option
+    disabled=""
+    value=""
+  >
+    Please select your test
+  </option>
+  <option
+    data-testid="selectOption"
+    value="1"
+  >
+    test1
+  </option>
+  <option
+    data-testid="selectOption"
+    value="2"
+  >
+    test2
+  </option>
+  <option
+    data-testid="selectOption"
+    value="3"
+  >
+    test3
+  </option>
+</select>
+`;
