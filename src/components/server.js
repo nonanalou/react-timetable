@@ -110,7 +110,7 @@ export function makeServer({ environment = 'test' } = {}) {
     },
 
     routes() {
-      this.urlPrefix = 'https://sandbox.gibm.ch'
+      this.urlPrefix = 'http://sandbox.gibm.ch'
       this.get('/berufe.php', schema => {
         let berufe = schema.db.berufe
         // change the name back to the original
@@ -137,16 +137,16 @@ export function makeServer({ environment = 'test' } = {}) {
         return schema.db.tafeln
           .filter(tafel => tafel['klasse_id'] == klasseId)
           .map(tafel => ({
-            id: tafel.id,
-            datum: tafel.datum,
-            wochentag: tafel.wochentag,
-            von: tafel.von,
-            bis: tafel.bis,
-            lehrer: tafel.lehrer,
-            fach: tafel.fach,
-            longfach: tafel.longfach,
-            raum: tafel.raum,
-            kommentar: tafel.kommentar,
+            tafel_id: tafel.id,
+            tafel_wochentag: tafel.wochentag,
+            tafel_datum: tafel.datum,
+            tafel_von: tafel.von,
+            tafel_bis: tafel.bis,
+            tafel_lehrer: tafel.lehrer,
+            tafel_fach: tafel.fach,
+            tafel_longfach: tafel.longfach,
+            tafel_raum: tafel.raum,
+            tafel_kommentar: tafel.kommentar,
           }))
       })
     },

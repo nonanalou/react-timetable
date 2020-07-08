@@ -40,6 +40,7 @@ test('allows interaction with the selectElement', () => {
   debug()
 
   //why the fuuu is that working???
+  expect(getByText('test1').selected).toBe(true)
   expect(getByText('test1').selected).toBe(false)
   expect(getByText('test2').selected).toBe(false)
   expect(getByText('test3').selected).toBe(true)

@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import SelectContainer from '../SelectContainer'
 import { TimetableData } from '../TimetableContext'
-import { getJobs } from '../../utils/API'
 import { makeServer } from '../server'
 
 let server
@@ -21,12 +20,12 @@ test('render the select container and manage the view', async () => {
       <SelectContainer />
     </TimetableData>
   )
-
-  debug()
   const header = getByTestId('header1')
   const jobSelect = getByLabelText(/job/i)
   const courseSelect = queryByLabelText(/course/i)
+
   debug(jobSelect)
+
   expect(header).toHaveTextContent(/stundenplan gibm/i)
   expect(jobSelect).toHaveTextContent(/please select your job/i)
   expect(courseSelect).toBeNull()

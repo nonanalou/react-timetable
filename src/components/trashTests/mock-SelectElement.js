@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import user from '@testing-library/user-event'
 import SelectElement from '../SelectElement'
-import { getJobs as mockGetJobs } from '../../utils/API'
+import { getJobs as mockGetJobs, getJobs } from '../../utils/API'
 
 jest.mock('../../utils/API.js')
 
