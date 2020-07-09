@@ -34,13 +34,12 @@ test('allows interaction with the selectElement', () => {
   expect(getByText('test1')).toHaveAttribute('value')
 
   //two different ways of trying to select something
-  user.selectOptions(selectOptions, 'test3')
+  user.selectOptions(selectOptions, '3')
   // const selectOption = getByText('test3')
   // fireEvent.click(selectOption)
   debug()
 
   //why the fuuu is that working???
-  expect(getByText('test1').selected).toBe(true)
   expect(getByText('test1').selected).toBe(false)
   expect(getByText('test2').selected).toBe(false)
   expect(getByText('test3').selected).toBe(true)

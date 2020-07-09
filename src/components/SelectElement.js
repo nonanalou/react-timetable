@@ -1,7 +1,12 @@
 import React from 'react'
 import SelectInput from './SelectInput'
 
-export default function SelectElement({ title, value, options, onSelect }) {
+export default function SelectElement({
+  title,
+  value,
+  options,
+  onSelect = () => {},
+}) {
   const changeHandler = event => {
     onSelect(event.target.value)
   }
