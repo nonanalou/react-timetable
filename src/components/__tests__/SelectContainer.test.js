@@ -15,6 +15,7 @@ afterEach(() => {
 })
 
 test('render the select container and manage the view', async () => {
+  server.createList('berufe', 2)
   const { queryByLabelText, debug, getByLabelText, getByTestId } = render(
     <TimetableData>
       <SelectContainer />
