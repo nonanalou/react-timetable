@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { getJobs, getCourses } from '../utils/API'
 import { TimetableContext } from './TimetableContext'
 import SelectElement from './SelectElement'
+import TimetableContainer from './TimetableContainer'
 
 export default function SelectContainer() {
   const context = useContext(TimetableContext)

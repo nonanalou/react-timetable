@@ -50,19 +50,23 @@ export default function TimetableContainer() {
   const prevClickHandler = () => setDate(() => subtractWeek(date))
 
   return (
-    <div className="max-w-4xl rounded overflow-hidden relative shadow-lg bg-white mt-8">
-      <div className="overflow-x-auto m-4 p-2">
-        {timetable.length ? (
-          <ScheduleTable timetableContent={timetable} />
-        ) : (
-          <NoScheduleAlert />
-        )}
-      </div>
-      <TableNavigation
-        addClickHandler={addClickHandler}
-        prevClickHandler={prevClickHandler}
-        date={week}
-      />
-    </div>
+    <>
+      {courseId && (
+        <div className="max-w-4xl rounded overflow-hidden relative shadow-lg bg-white mt-8">
+          <div className="overflow-x-auto m-4 p-2">
+            {timetable.length ? (
+              <ScheduleTable timetableContent={timetable} />
+            ) : (
+              <NoScheduleAlert />
+            )}
+          </div>
+          <TableNavigation
+            addClickHandler={addClickHandler}
+            prevClickHandler={prevClickHandler}
+            date={week}
+          />
+        </div>
+      )}
+    </>
   )
 }
